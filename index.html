@@ -2,306 +2,376 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#14060e">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a0a14">
 <title>Fin2282</title>
-<meta property="og:title" content="Fin2282">
-<meta property="og:description" content="Добро пожаловать :3">
-<meta property="og:image" content="avatar.jpg">
-<link rel="icon" href="avatar.jpg">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-:root{
-  --bg:#14060e;
-  --pink:#ff4d94;
-  --pink-soft:#ff9ac4;
-  --violet:#9b5cff;
-  --text:#fff5f9;
-  --muted:rgba(255,245,249,.62);
-  --glass:rgba(255,255,255,.06);
-  --line:rgba(255,255,255,.12);
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --pink-300: #ff99c2;
+  --pink-400: #ff6b9d;
+  --pink-500: #ff4081;
+  --pink-600: #e91e63;
+  --pink-800: #ad1457;
 }
-html{scroll-behavior:smooth}
-body{
-  font-family:'Outfit',system-ui,sans-serif;
-  color:var(--text);
-  min-height:100vh;min-height:100dvh;
+
+body {
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
   background:
-    linear-gradient(160deg,rgba(20,6,14,.88),rgba(38,10,34,.84) 55%,rgba(20,6,14,.92)),
-    url('background.jpg') center/cover fixed;
-  background-color:var(--bg);
-  display:flex;justify-content:center;
-  padding:max(28px,env(safe-area-inset-top)) 16px max(28px,env(safe-area-inset-bottom));
-  overflow-x:hidden;
-}
-/* живой фон */
-.blob{position:fixed;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;opacity:.5}
-.b1{width:340px;height:340px;background:var(--pink);top:-110px;left:-90px;animation:drift 16s ease-in-out infinite alternate}
-.b2{width:300px;height:300px;background:var(--violet);bottom:-100px;right:-80px;animation:drift 20s ease-in-out infinite alternate-reverse}
-@keyframes drift{to{transform:translate(60px,50px) scale(1.15)}}
-
-/* заставка */
-.splash{
-  position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
-  background:rgba(20,6,14,.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
-  cursor:pointer;border:0;color:var(--text);font:inherit;width:100%;
-  transition:opacity .6s ease,visibility .6s;
-}
-.splash.hide{opacity:0;visibility:hidden}
-.splash-star{font-size:44px;color:var(--pink);animation:spin 6s linear infinite;text-shadow:0 0 30px var(--pink)}
-.splash-text{font-size:18px;font-weight:300;letter-spacing:.5px;animation:blink 2s ease-in-out infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes blink{50%{opacity:.35}}
-
-/* страница */
-.wrap{position:relative;z-index:1;width:100%;max-width:440px;align-self:flex-start;margin:auto}
-.profile{text-align:center;margin-bottom:26px}
-.avatar-btn{
-  position:relative;display:inline-block;border:0;background:none;cursor:pointer;
-  width:132px;height:132px;border-radius:50%;
-  transition:transform .25s cubic-bezier(.3,1.6,.5,1);
-}
-.avatar-btn:active{transform:scale(.92) rotate(-4deg)}
-.avatar-btn::before{
-  content:'';position:absolute;inset:-5px;border-radius:50%;
-  background:conic-gradient(from 0deg,var(--pink),var(--violet),var(--pink-soft),var(--pink));
-  animation:spin 7s linear infinite;
-}
-.avatar-btn::after{content:'';position:absolute;inset:-5px;border-radius:50%;box-shadow:0 0 44px rgba(255,77,148,.45);pointer-events:none}
-.avatar-btn img{
-  position:relative;z-index:1;width:100%;height:100%;border-radius:50%;object-fit:cover;
-  border:4px solid var(--bg);display:block;
-}
-.badge{
-  position:absolute;z-index:2;right:-6px;bottom:2px;
-  min-width:34px;padding:4px 9px;border-radius:99px;
-  background:linear-gradient(135deg,var(--pink),var(--violet));
-  font-size:13px;font-weight:600;color:#fff;border:3px solid var(--bg);
-  transition:transform .2s;
-}
-.badge.pop{transform:scale(1.35)}
-.meow{
-  position:absolute;z-index:3;left:50%;top:10px;pointer-events:none;
-  font-weight:800;font-size:20px;color:var(--pink-soft);text-shadow:0 0 14px var(--pink);
-  animation:rise .9s ease-out forwards;
-}
-@keyframes rise{from{opacity:1;transform:translate(-50%,0) scale(.8)}to{opacity:0;transform:translate(calc(-50% + var(--dx,0px)),-70px) scale(1.2)}}
-
-h1{margin-top:18px;font-size:34px;font-weight:800;letter-spacing:-.5px;line-height:1.1}
-.tagline{margin-top:8px;height:24px;color:var(--pink-soft);font-weight:300;font-size:16px}
-.tagline::after{content:'';display:inline-block;width:2px;height:1em;margin-left:3px;vertical-align:-2px;background:var(--pink);animation:caret 1s steps(1) infinite}
-@keyframes caret{50%{opacity:0}}
-.hint{margin-top:6px;font-size:12px;color:var(--muted)}
-
-/* плитки */
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.tile{
-  position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:22px;
-  min-height:112px;padding:16px;border-radius:22px;text-decoration:none;color:var(--text);
-  background:var(--glass);border:1px solid var(--line);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  overflow:hidden;isolation:isolate;
-  transition:transform .2s ease,border-color .2s ease;
-}
-.tile::before{
-  content:'';position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .25s;
-  background:radial-gradient(180px circle at var(--x,50%) var(--y,50%),rgba(255,77,148,.28),transparent 70%);
-}
-.tile:active{transform:scale(.96)}
-.tile:focus-visible,.avatar-btn:focus-visible,.copy:focus-visible{outline:2px solid var(--pink-soft);outline-offset:3px}
-.tile.wide{grid-column:1/-1;flex-direction:row;align-items:center;min-height:0;gap:16px;padding:18px}
-.ico{
-  width:44px;height:44px;border-radius:14px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;
-}
-.name{font-size:16px;font-weight:600}
-.sub{font-size:13px;color:var(--muted);font-weight:300}
-.wide .name{font-size:18px}
-.wide .go{margin-left:auto;color:var(--pink-soft)}
-.tg{background:linear-gradient(135deg,#0088cc,#29b6f6)}
-.ds{background:linear-gradient(135deg,#5865f2,#7983f5)}
-.tw{background:linear-gradient(135deg,#9146ff,#772ce8)}
-.st{background:linear-gradient(135deg,#1b2838,#35607f)}
-.nm{background:linear-gradient(135deg,#43a047,#2e7d32)}
-.rb{background:linear-gradient(135deg,#e53935,#b71c1c)}
-.sp{background:linear-gradient(135deg,#1db954,#1ed760)}
-@media (hover:hover){
-  .tile:hover{transform:translateY(-4px);border-color:rgba(255,77,148,.55)}
-  .tile:hover::before{opacity:1}
+    linear-gradient(135deg, rgba(26,10,20,.85) 0%, rgba(45,16,33,.85) 50%, rgba(26,10,20,.85) 100%),
+    url('background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* низ */
-.foot{margin-top:26px;display:flex;flex-direction:column;align-items:center;gap:12px}
-.copy{
-  display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:99px;
-  border:1px solid var(--line);background:var(--glass);color:var(--text);
-  font:inherit;font-size:14px;cursor:pointer;transition:transform .15s,background .2s;
+.bg-glow {
+  position: fixed; width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,64,129,.15) 0%, transparent 70%);
+  top: -200px; left: 50%; transform: translateX(-50%);
+  pointer-events: none; animation: pulse 8s ease-in-out infinite;
 }
-.copy:active{transform:scale(.95)}
-.copy.done{background:linear-gradient(135deg,var(--pink),var(--violet));border-color:transparent}
-.small{font-size:12px;color:var(--muted)}
-
-/* появление после входа */
-.wrap>*{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
-body.in .wrap>*{opacity:1;transform:none}
-body.in .wrap>*:nth-child(2){transition-delay:.15s}
-body.in .wrap>*:nth-child(3){transition-delay:.3s}
-
-@media (max-width:360px){
-  h1{font-size:30px}
-  .tile{padding:14px;min-height:104px}
+.bg-glow-2 {
+  position: fixed; width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,107,157,.1) 0%, transparent 70%);
+  bottom: -150px; right: -100px; pointer-events: none;
+  animation: pulse 10s ease-in-out infinite reverse;
 }
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
-  .wrap>*{opacity:1;transform:none}
+@keyframes pulse {
+  0%, 100% { opacity: .5; transform: translateX(-50%) scale(1); }
+  50% { opacity: .8; transform: translateX(-50%) scale(1.1); }
+}
+
+.container { width: 100%; max-width: 480px; position: relative; z-index: 1; }
+.head, .links { max-width: 360px; margin-left: auto; margin-right: auto; }
+
+.avatar-wrapper { display: flex; justify-content: center; margin-bottom: 20px; }
+.avatar {
+  width: 120px; height: 120px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+  padding: 3px; box-shadow: 0 0 30px rgba(255,64,129,.4);
+  animation: float 6s ease-in-out infinite;
+  cursor: pointer; -webkit-tap-highlight-color: transparent; user-select: none;
+}
+.avatar img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; pointer-events: none; }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.username {
+  text-align: center; font-size: 26px; font-weight: 700; color: #fff;
+  margin-bottom: 6px; text-shadow: 0 0 20px rgba(255,64,129,.5);
+}
+.tagline {
+  text-align: center; color: var(--pink-300); font-size: 13px;
+  margin-bottom: 20px; font-weight: 300; letter-spacing: 1px;
+}
+
+.links { display: flex; flex-direction: column; gap: 10px; }
+.link {
+  display: flex; align-items: center; gap: 12px; padding: 12px 18px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,64,129,.2);
+  border-radius: 12px; text-decoration: none; color: #fff;
+  transition: all .3s cubic-bezier(.4,0,.2,1); position: relative; overflow: hidden;
+}
+.link::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,64,129,.1), transparent);
+  opacity: 0; transition: opacity .3s;
+}
+.link:hover {
+  transform: translateX(8px); border-color: var(--pink-500);
+  box-shadow: 0 0 30px rgba(255,64,129,.2), inset 0 0 30px rgba(255,64,129,.05);
+}
+.link:hover::before { opacity: 1; }
+.link-icon {
+  width: 36px; height: 36px; border-radius: 10px; display: flex;
+  align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; color: #fff;
+}
+.link-telegram { background: linear-gradient(135deg, #0088cc, #00aaff); }
+.link-discord  { background: linear-gradient(135deg, #5865F2, #7289da); }
+.link-twitch   { background: linear-gradient(135deg, #9146ff, #772ce8); }
+.link-steam    { background: linear-gradient(135deg, #1b2838, #2a475e); }
+.link-namemc   { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
+.link-roblox   { background: linear-gradient(135deg, #E2231A, #B91C18); }
+.link-spotify  { background: linear-gradient(135deg, #1DB954, #1ed760); }
+.link-text { flex: 1; font-size: 13px; font-weight: 500; }
+.link-arrow { color: var(--pink-400); font-size: 14px; opacity: 0; transform: translateX(-10px); transition: all .3s; }
+.link:hover .link-arrow { opacity: 1; transform: translateX(0); }
+
+.decorative { position: fixed; color: var(--pink-800); font-size: 24px; opacity: .1; pointer-events: none; }
+.d-1 { top: 20%; left: 10%; animation: rotate 20s linear infinite; }
+.d-2 { top: 60%; right: 15%; animation: rotate 15s linear infinite reverse; }
+.d-3 { bottom: 20%; left: 20%; animation: rotate 25s linear infinite; }
+@keyframes rotate { to { transform: rotate(360deg); } }
+
+/* ---------- плеер ---------- */
+.player {
+  margin-top: 18px; padding: 20px 22px 16px;
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,64,129,.2);
+  border-radius: 18px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.p-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.p-title { color: #fff; font-size: 17px; font-weight: 600; }
+.p-artist { color: var(--pink-300); font-size: 13px; font-weight: 300; margin-left: 6px; }
+.p-time { color: rgba(255,255,255,.55); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.p-bar {
+  height: 22px; margin: 10px 0 8px; display: flex; align-items: center; cursor: pointer;
+  touch-action: none;
+}
+.p-bar-track { width: 100%; height: 5px; border-radius: 5px; background: rgba(255,255,255,.12); position: relative; }
+.p-bar-fill {
+  position: absolute; inset: 0 auto 0 0; width: 0; border-radius: 5px;
+  background: linear-gradient(90deg, var(--pink-400), var(--pink-600));
+  box-shadow: 0 0 10px rgba(255,64,129,.6);
+}
+
+.p-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.p-ctrls { display: flex; align-items: center; gap: 6px; }
+.p-btn {
+  width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent;
+  color: rgba(255,255,255,.8); font-size: 16px; cursor: pointer; transition: color .2s, background .2s;
+}
+.p-btn:hover { color: var(--pink-400); }
+.p-btn:focus-visible, .avatar:focus-visible, .p-bar:focus-visible { outline: 2px solid var(--pink-400); outline-offset: 2px; }
+.p-play {
+  width: 48px; height: 48px; color: #fff; font-size: 18px;
+  background: linear-gradient(135deg, var(--pink-400), var(--pink-600));
+  box-shadow: 0 0 16px rgba(255,64,129,.35);
+}
+.p-play:hover { color: #fff; filter: brightness(1.1); }
+.p-vol { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,.55); font-size: 14px; }
+.p-vol input { width: 110px; accent-color: var(--pink-500); cursor: pointer; }
+
+/* ---------- экран входа ---------- */
+.gate {
+  position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 14px; cursor: pointer;
+  background: rgba(26,10,20,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  color: var(--pink-300); font-size: 14px; font-weight: 300; letter-spacing: 1px;
+  transition: opacity .6s ease, visibility .6s;
+}
+.gate i { font-size: 26px; color: var(--pink-400); text-shadow: 0 0 20px rgba(255,64,129,.7); animation: pulse2 2.4s ease-in-out infinite; }
+.gate:focus-visible { outline: 2px solid var(--pink-400); outline-offset: -6px; }
+.gate.hide { opacity: 0; visibility: hidden; }
+@keyframes pulse2 { 0%, 100% { opacity: .6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.15); } }
+
+@media (max-width: 420px) {
+  .player { padding: 18px 16px 14px; }
+  .p-vol input { width: 84px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
 }
 </style>
 </head>
 <body>
-<div class="blob b1"></div>
-<div class="blob b2"></div>
 
-<button class="splash" id="splash" type="button" aria-label="Войти на страницу">
-  <span class="splash-star">✦</span>
-  <span class="splash-text">нажми, чтобы войти</span>
-</button>
+<div class="gate" id="gate" role="button" tabindex="0" aria-label="Войти на сайт">
+  <i class="fas fa-star-of-life"></i>
+  <span>нажми, чтобы войти</span>
+</div>
 
-<main class="wrap">
-  <section class="profile">
-    <button class="avatar-btn" id="avatar" type="button" aria-label="Погладить кота">
+<div class="bg-glow"></div>
+<div class="bg-glow-2"></div>
+<div class="decorative d-1">✦</div>
+<div class="decorative d-2">✧</div>
+<div class="decorative d-3">✦</div>
+
+<div class="container">
+  <div class="head">
+  <div class="avatar-wrapper">
+    <div class="avatar" id="avatar" role="button" tabindex="0" aria-label="Аватар">
       <img src="avatar.jpg" alt="Fin2282">
-      <span class="badge" id="badge">0</span>
-    </button>
-    <h1>Fin2282</h1>
-    <p class="tagline" id="tagline"></p>
-    <p class="hint">нажми на аву — услышишь мяу</p>
-  </section>
+    </div>
+  </div>
 
-  <section class="grid">
-    <a class="tile wide" href="https://t.me/fin228262" target="_blank" rel="noopener">
-      <div class="ico tg"><i class="fab fa-telegram-plane"></i></div>
-      <div><div class="name">Telegram</div><div class="sub">мой канал</div></div>
-      <i class="fas fa-arrow-up-right-from-square go"></i>
-    </a>
-    <a class="tile" href="https://discord.gg/4fSm5RJmBc" target="_blank" rel="noopener">
-      <div class="ico ds"><i class="fab fa-discord"></i></div>
-      <div><div class="name">Discord</div><div class="sub">сервер</div></div>
-    </a>
-    <a class="tile" href="https://www.twitch.tv/fin2282" target="_blank" rel="noopener">
-      <div class="ico tw"><i class="fab fa-twitch"></i></div>
-      <div><div class="name">Twitch</div><div class="sub">стримы</div></div>
-    </a>
-    <a class="tile" href="https://steamcommunity.com/profiles/76561199257794657/" target="_blank" rel="noopener">
-      <div class="ico st"><i class="fab fa-steam"></i></div>
-      <div><div class="name">Steam</div><div class="sub">профиль</div></div>
-    </a>
-    <a class="tile" href="https://namemc.com/profile/Fin228_.1" target="_blank" rel="noopener">
-      <div class="ico nm"><i class="fas fa-cube"></i></div>
-      <div><div class="name">NameMC</div><div class="sub">Minecraft</div></div>
-    </a>
-    <a class="tile" href="https://www.roblox.com/users/1964600822/profile" target="_blank" rel="noopener">
-      <div class="ico rb"><i class="fas fa-gamepad"></i></div>
-      <div><div class="name">Roblox</div><div class="sub">профиль</div></div>
-    </a>
-    <a class="tile" href="https://open.spotify.com/user/31dk7cv27efjkp3k5yvdyligegge?si=834919aa8a7d42e8" target="_blank" rel="noopener">
-      <div class="ico sp"><i class="fab fa-spotify"></i></div>
-      <div><div class="name">Spotify</div><div class="sub">музыка</div></div>
-    </a>
-  </section>
+  <h1 class="username">Fin2282</h1>
+  <p class="tagline">Добро пожаловать :3</p>
+  </div>
 
-  <footer class="foot">
-    <button class="copy" id="copy" type="button"><i class="fas fa-link"></i><span>Скопировать ссылку</span></button>
-    <p class="small">© Fin2282</p>
-  </footer>
-</main>
+  <div class="links">
+    <a href="https://t.me/fin228262" class="link" target="_blank" rel="noopener">
+      <div class="link-icon link-telegram"><i class="fab fa-telegram-plane"></i></div>
+      <span class="link-text">Telegram канал</span><span class="link-arrow">→</span>
+    </a>
+    <a href="https://discord.gg/4fSm5RJmBc" class="link" target="_blank" rel="noopener">
+      <div class="link-icon link-discord"><i class="fab fa-discord"></i></div>
+      <span class="link-text">Discord сервер</span><span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.twitch.tv/fin2282" class="link" target="_blank" rel="noopener">
+      <div class="link-icon link-twitch"><i class="fab fa-twitch"></i></div>
+      <span class="link-text">Twitch</span><span class="link-arrow">→</span>
+    </a>
+    <a href="https://steamcommunity.com/profiles/76561199257794657/" class="link" target="_blank" rel="noopener">
+      <div class="link-icon link-steam"><i class="fab fa-steam"></i></div>
+      <span class="link-text">Steam</span><span class="link-arrow">→</span>
+    </a>
+    <a href="https://namemc.com/profile/Fin228_.1" class="link" target="_blank" rel="noopener">
+      <div class="link-icon link-namemc"><i class="fas fa-cube"></i></div>
+      <span class="link-text">NameMC</span><span class="link-arrow">→</span>
+    </a>
+    <a href="https://www.roblox.com/users/1964600822/profile" class="link" target="_blank" rel="noopener">
+      <div class="link-icon link-roblox"><i class="fas fa-gamepad"></i></div>
+      <span class="link-text">Roblox</span><span class="link-arrow">→</span>
+    </a>
+    <a href="https://open.spotify.com/user/31dk7cv27efjkp3k5yvdyligegge?si=834919aa8a7d42e8" class="link" target="_blank" rel="noopener">
+      <div class="link-icon link-spotify"><i class="fab fa-spotify"></i></div>
+      <span class="link-text">Spotify</span><span class="link-arrow">→</span>
+    </a>
+  </div>
 
-<audio id="meowSound" src="meowrgh.mp3" preload="auto"></audio>
+  <div class="player" aria-label="Музыкальный плеер">
+    <div class="p-top">
+      <div><span class="p-title" id="pTitle">Safe Room</span><span class="p-artist" id="pArtist">nicopatty</span></div>
+      <span class="p-time"><span id="pCur">0:00</span> / <span id="pDur">0:00</span></span>
+    </div>
+    <div class="p-bar" id="pBar" tabindex="0" role="slider" aria-label="Перемотка" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+      <div class="p-bar-track"><div class="p-bar-fill" id="pFill"></div></div>
+    </div>
+    <div class="p-row">
+      <div class="p-ctrls">
+        <button class="p-btn" id="pPrev" aria-label="Предыдущий трек"><i class="fas fa-backward-step"></i></button>
+        <button class="p-btn p-play" id="pPlay" aria-label="Играть / пауза"><i class="fas fa-play" id="pPlayIcon"></i></button>
+        <button class="p-btn" id="pNext" aria-label="Следующий трек"><i class="fas fa-forward-step"></i></button>
+      </div>
+      <div class="p-vol">
+        <i class="fas fa-volume-low"></i>
+        <input type="range" id="pVol" min="0" max="1" step="0.01" value="0.1" aria-label="Громкость">
+      </div>
+    </div>
+  </div>
+</div>
+
+<audio id="music" preload="auto"></audio>
 
 <script>
-(function () {
-  var $ = function (id) { return document.getElementById(id); };
+/* ===== Музыка ===== */
+const TRACKS = [
+  { title: 'Safe Room',            artist: 'nicopatty',  src: 'music/safe-room.mp3' },
+  { title: 'Shop',                 artist: 'nicopatty',  src: 'music/shop.mp3' },
+  { title: 'Dead Internet Theory', artist: 'ZWE1HVNDXR', src: 'music/dead-internet-theory.mp3' }
+];
+const START_VOLUME = 0.1; // тихий фон при входе (0–1)
 
-  // заставка
-  var splash = $('splash');
-  function enter() {
-    splash.classList.add('hide');
-    document.body.classList.add('in');
+const music = document.getElementById('music');
+const $ = id => document.getElementById(id);
+let idx = 0;
+
+music.volume = START_VOLUME;
+$('pVol').value = START_VOLUME;
+
+function fmt(s) {
+  if (!isFinite(s)) return '0:00';
+  return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0');
+}
+function loadTrack(i, autoplay) {
+  idx = (i + TRACKS.length) % TRACKS.length;
+  const t = TRACKS[idx];
+  music.src = t.src;
+  $('pTitle').textContent = t.title;
+  $('pArtist').textContent = t.artist;
+  $('pCur').textContent = '0:00';
+  $('pDur').textContent = '0:00';
+  $('pFill').style.width = '0%';
+  if (autoplay) music.play().catch(() => {});
+}
+function setPlayIcon() {
+  $('pPlayIcon').className = music.paused ? 'fas fa-play' : 'fas fa-pause';
+}
+
+$('pPlay').onclick = () => (music.paused ? music.play().catch(() => {}) : music.pause());
+$('pPrev').onclick = () => loadTrack(idx - 1, true);
+$('pNext').onclick = () => loadTrack(idx + 1, true);
+$('pVol').oninput = e => { music.volume = +e.target.value; };
+
+music.addEventListener('play', setPlayIcon);
+music.addEventListener('pause', setPlayIcon);
+music.addEventListener('ended', () => loadTrack(idx + 1, true));
+music.addEventListener('loadedmetadata', () => { $('pDur').textContent = fmt(music.duration); });
+music.addEventListener('timeupdate', () => {
+  const p = music.duration ? (music.currentTime / music.duration) * 100 : 0;
+  $('pFill').style.width = p + '%';
+  $('pBar').setAttribute('aria-valuenow', Math.round(p));
+  $('pCur').textContent = fmt(music.currentTime);
+});
+
+function seekFromEvent(e) {
+  const r = $('pBar').getBoundingClientRect();
+  const x = Math.min(Math.max((e.clientX - r.left) / r.width, 0), 1);
+  if (music.duration) music.currentTime = x * music.duration;
+}
+let dragging = false;
+$('pBar').addEventListener('pointerdown', e => { dragging = true; seekFromEvent(e); });
+window.addEventListener('pointermove', e => { if (dragging) seekFromEvent(e); });
+window.addEventListener('pointerup', () => { dragging = false; });
+$('pBar').addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') music.currentTime = Math.min(music.currentTime + 5, music.duration || 0);
+  if (e.key === 'ArrowLeft') music.currentTime = Math.max(music.currentTime - 5, 0);
+});
+
+loadTrack(0, false);
+
+/* ===== Мяу без задержки (Web Audio) ===== */
+const AC = window.AudioContext || window.webkitAudioContext;
+const ctx = new AC();
+let meowBuf = null;
+let meowStart = 0;
+const fallback = new Audio('meowrgh.mp3');
+fallback.preload = 'auto';
+
+fetch('meowrgh.mp3')
+  .then(r => r.arrayBuffer())
+  .then(ab => ctx.decodeAudioData(ab))
+  .then(buf => {
+    meowBuf = buf;
+    // убираем тишину в начале файла, чтобы звук стартовал сразу
+    const d = buf.getChannelData(0);
+    let i = 0;
+    while (i < d.length && Math.abs(d[i]) < 0.01) i++;
+    meowStart = Math.max(0, i - buf.sampleRate * 0.005) / buf.sampleRate;
+  })
+  .catch(() => {});
+
+function meow() {
+  if (ctx.state === 'suspended') ctx.resume();
+  if (meowBuf) {
+    const src = ctx.createBufferSource();
+    src.buffer = meowBuf;
+    src.connect(ctx.destination);
+    src.start(0, meowStart);
+  } else {
+    fallback.currentTime = 0;
+    fallback.play().catch(() => {});
   }
-  splash.addEventListener('click', enter);
+}
+const avatar = $('avatar');
+avatar.addEventListener('pointerdown', meow);
+avatar.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); meow(); } });
 
-  // печатающаяся подпись
-  var phrases = ['Добро пожаловать :3', 'заходи, не стесняйся ✦', 'мяу? нажми на аву'];
-  var tag = $('tagline'), p = 0, c = 0, del = false;
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduce) { tag.textContent = phrases[0]; }
-  else {
-    (function tick() {
-      var s = phrases[p];
-      tag.textContent = s.slice(0, c);
-      var t = del ? 35 : 85;
-      if (!del && c === s.length) { del = true; t = 1800; }
-      else if (del && c === 0) { del = false; p = (p + 1) % phrases.length; t = 400; }
-      else { c += del ? -1 : 1; }
-      setTimeout(tick, t);
-    })();
-  }
-
-  // счётчик мяу
-  var audio = $('meowSound'), badge = $('badge'), count = 0;
-  try { count = parseInt(localStorage.getItem('fin-meows'), 10) || 0; } catch (e) {}
-  badge.textContent = count;
-  $('avatar').addEventListener('click', function () {
-    count++;
-    badge.textContent = count;
-    try { localStorage.setItem('fin-meows', count); } catch (e) {}
-    badge.classList.add('pop');
-    setTimeout(function () { badge.classList.remove('pop'); }, 160);
-    try { audio.currentTime = 0; audio.play(); } catch (e) {}
-    var m = document.createElement('span');
-    m.className = 'meow';
-    m.textContent = 'мяу!';
-    m.style.setProperty('--dx', (Math.random() * 60 - 30) + 'px');
-    this.appendChild(m);
-    setTimeout(function () { m.remove(); }, 900);
-  });
-
-  // подсветка плиток за курсором
-  document.querySelectorAll('.tile').forEach(function (t) {
-    t.addEventListener('pointermove', function (e) {
-      var r = t.getBoundingClientRect();
-      t.style.setProperty('--x', (e.clientX - r.left) + 'px');
-      t.style.setProperty('--y', (e.clientY - r.top) + 'px');
-    });
-  });
-
-  // копирование ссылки
-  var copyBtn = $('copy');
-  copyBtn.addEventListener('click', function () {
-    var label = copyBtn.querySelector('span');
-    function ok() {
-      copyBtn.classList.add('done');
-      label.textContent = 'Ссылка скопирована';
-      setTimeout(function () {
-        copyBtn.classList.remove('done');
-        label.textContent = 'Скопировать ссылку';
-      }, 1800);
-    }
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(location.href).then(ok, function () {});
-    } else {
-      var i = document.createElement('input');
-      i.value = location.href;
-      document.body.appendChild(i);
-      i.select();
-      try { document.execCommand('copy'); ok(); } catch (e) {}
-      i.remove();
-    }
-  });
-})();
+/* ===== Вход на сайт: клик запускает музыку ===== */
+const gate = $('gate');
+function enter() {
+  if (ctx.state === 'suspended') ctx.resume();
+  music.muted = false;
+  music.play().catch(() => {});
+  gate.classList.add('hide');
+}
+gate.addEventListener('pointerdown', enter, { once: true });
+gate.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); enter(); } });
 </script>
 </body>
 </html>
